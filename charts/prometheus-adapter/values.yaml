@@ -150,3 +150,6 @@ podDisruptionBudget:
   enabled: false
   minAvailable:
   maxUnavailable: 1
+
+# Labels to apply to all resources
+commonLabels: {}

@@ -3,11 +3,7 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   name: {{ template "k8s-prometheus-adapter.fullname" . }}
-  labels:
-    app: {{ template "k8s-prometheus-adapter.name" . }}
-    chart: {{ template "k8s-prometheus-adapter.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+  labels: {{ include "k8s-prometheus-adapter.labels" . | nindent 4 }}
 spec:
   {{- if .Values.podDisruptionBudget.minAvailable }}
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}

@@ -32,6 +32,19 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+Create common labels
+*/}}
+{{- define "k8s-prometheus-adapter.labels" -}}
+app: {{ template "k8s-prometheus-adapter.name" . }}
+chart: {{ template "k8s-prometheus-adapter.chart" . }}
+release: {{ $.Release.Name | quote }}
+heritage: {{ $.Release.Service | quote }}
+{{- if .Values.commonLabels }}
+{{ toYaml .Values.commonLabels }}
+{{- end }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "k8s-prometheus-adapter.serviceAccountName" -}}
